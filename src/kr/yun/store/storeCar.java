@@ -1,10 +1,10 @@
 package kr.yun.store;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class storeCar extends storeMain {
     HashMap<String, Integer> CarInfo = new HashMap<String, Integer>();
+    ArrayList<HashMap> CarList = new ArrayList<HashMap>();
     Scanner ScanCar = new Scanner(System.in);
     Scanner scanStore = new Scanner(System.in);
     String StoreName = "Car 상점";
@@ -15,16 +15,16 @@ public class storeCar extends storeMain {
         CarInfo.put("소나타", 5000);
         CarInfo.put("벤츠", 50000);
 
-        System.out.println(this.StoreName+" 가게에 입장하였습니다.");
+        this.storeJoin();
         System.out.println("------"+this.StoreName+"------");
         this.outputCar();
 
         while (true) {
             System.out.println("--------------------");
             System.out.println("| 1. 자동차 목록     |");
-            System.out.println("| 2. 자동차 사기     |");
+            System.out.println("| 2. 자동차 예약     |");
             System.out.println("| 3. 자동차 결제하기 |");
-            System.out.println("| 4. 쇼핑 그만하기 |");
+            System.out.println("| 4. 쇼핑 그만하기   |");
             System.out.println("--------------------");
 
             System.out.print("("+this.StoreName+") 작업을 선택하세요. : ");
@@ -64,8 +64,8 @@ public class storeCar extends storeMain {
 
     public void storeBuy(String key){
         if (CarInfo.containsKey(key)) {
-            System.out.println(key+"을 물건을 샀습니다.");
-            this.TotalPrice += CarInfo.get(key);
+            System.out.println(key+"을 차를 예약했습니다.");
+            this.CarList.add(CarInfo);
         }
         else{
             System.out.println("물건이 없습니다.");
@@ -74,7 +74,9 @@ public class storeCar extends storeMain {
 
     public void storeSell(userAccount userInfo){
         System.out.println("모든 물건을 계산합니다.");
-        System.out.println("잔 고 : " + userInfo.account);
+        userInfo.MyInfo();
+        for (HashMap hm : this.CarList)
+            this.TotalPrice += (int)Collections.list(Collections.enumeration(hm.values())).get(0);
         System.out.println("총 액 : " + this.TotalPrice);
         while (true) {
             if (this.TotalPrice > userInfo.account) {
