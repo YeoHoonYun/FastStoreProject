@@ -11,14 +11,17 @@ public class storeCar extends storeMain {
     String CarName, selectStore;
     int TotalPrice = 0;
 
-    public storeCar(userAccount userInfo){
+    public storeCar(){
         CarInfo.put("소나타", 5000);
         CarInfo.put("벤츠", 50000);
 
         this.storeJoin();
         System.out.println("------"+this.StoreName+"------");
         this.outputCar();
+    }
 
+    protected void selectWork(userAccount userInfo){
+        System.out.println("---작업을 선택하세요.----");
         while (true) {
             System.out.println("--------------------");
             System.out.println("| 1. 자동차 목록     |");
@@ -49,7 +52,7 @@ public class storeCar extends storeMain {
         }
     }
 
-    public void outputCar(){
+    protected void outputCar(){
         System.out.println("------------CarInfo-----------");
         for (String key : this.CarInfo.keySet()){
             System.out.println(String.format("| Car : %s, Price : %s |", key, CarInfo.get(key)));
@@ -58,11 +61,11 @@ public class storeCar extends storeMain {
         return;
     }
 
-    public void storeJoin(){
+    protected void storeJoin(){
         System.out.println(this.StoreName +" 가게에 입장하였습니다.");
     }
 
-    public void storeBuy(String key){
+    protected void storeBuy(String key){
         if (CarInfo.containsKey(key)) {
             System.out.println(key+"을 차를 예약했습니다.");
             this.CarList.add(CarInfo);
@@ -72,7 +75,7 @@ public class storeCar extends storeMain {
         }
     }
 
-    public void storeSell(userAccount userInfo){
+    protected void storeSell(userAccount userInfo){
         System.out.println("모든 물건을 계산합니다.");
         userInfo.MyInfo();
         for (HashMap hm : this.CarList)
@@ -95,7 +98,7 @@ public class storeCar extends storeMain {
         }
     }
 
-    public void storeExit(){
+    protected void storeExit(){
         System.out.println(this.StoreName+"가게에 나왔습니다.------");
         return;
     }

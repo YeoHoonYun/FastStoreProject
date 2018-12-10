@@ -28,10 +28,11 @@ public class storeProgram {
                 userInfo.MyInfo();
             } else if (selectNum.equalsIgnoreCase("2")) {
                 userInfo.work();
-                System.out.println("현재 잔고 : " + userInfo.account);
+                System.out.println("현재 잔고 : " + userInfo);
 
             } else if (selectNum.equalsIgnoreCase("3")) {
-                storeCar testCar = new storeCar(userInfo);
+                storeCar testCar = new storeCar();
+                testCar.selectWork(userInfo);
                 userInfo.MyInfo();
             } else {
                 System.out.println("값이 유효하지 않습니다.");

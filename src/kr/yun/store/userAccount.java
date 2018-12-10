@@ -8,11 +8,6 @@ public class userAccount {
         this.name = name;
     }
 
-//    public userAccount(String name, int account){
-//        this.name = name;
-//        this.account = account;
-//    }
-
     public void MyInfo(){
         System.out.println("------------------------------");
         System.out.println("이름 : " + this.name);
